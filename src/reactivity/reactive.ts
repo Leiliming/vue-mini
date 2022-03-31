@@ -1,9 +1,10 @@
 import { track, trigger } from './effect'
-export function reactive(raw) {
-  return new Proxy(raw, {
+export function reactive(target) {
+  return new Proxy(target, {
     get(target, key) {
       const res = Reflect.get(target, key)
-      //TODO 依赖收集
+
+      //todo
       track(target, key)
       return res
     },
